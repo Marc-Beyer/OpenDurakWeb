@@ -1,0 +1,26 @@
+#trumpContainer {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    margin: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+        color: $color-white-1;
+        font-weight: 700;
+        margin: 1rem 0;
+    }
+
+    card-element {
+        position: relative;
+        display: block;
+
+        &:hover {
+            transform: none;
+        }
+    }
+}

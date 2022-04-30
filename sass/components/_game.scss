@@ -1,0 +1,21 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #actionText {
+        color: $color-white-1;
+        margin: 1rem auto;
+        text-align: center;
+    }
+
+    button {
+        border: 2px solid $color-white-1;
+
+        background-color: $color-special-highlight;
+
+        &:hover {
+            background-color: $color-special;
+        }
+    }
+}

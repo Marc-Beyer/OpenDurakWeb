@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+        <title>Open Durak</title>
+
+        <script src="./scripts/controller/game.js" type="module" defer></script>
+        <link rel="stylesheet" href="./style/main.css" />
+    </head>
+    <body>
+        <div id="loginModal">
+            <h1>Join Lobby</h1>
+            <h2>Choose a Name:</h2>
+            <div id="nameInputContainer" class="horizontalContainer">
+                <input type="text" name="username" id="usernameInput" />
+                <button id="joinButton">Join</button>
+            </div>
+            <div id="botsSelectContainer" class="horizontalContainer">
+                <span>Bots:</span>
+                <select name="bots" id="botsSelect">
+                    <option value="0">none</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <p id="usernameInfo"></p>
+        </div>
+
+        <div id="playerListContainer" style="display: none">
+            <h2>Player</h2>
+            <div id="playerListElement"></div>
+        </div>
+
+        <header>
+            <h2 id="actionText"></h2>
+            <button id="startGameButton" hidden>START GAME</button>
+            <button id="endTurnButton" hidden>End Turn</button>
+        </header>
+
+        <div id="cardContainer"></div>
+        <div id="avatarContainer"></div>
+
+        <div id="trumpContainer" style="display: none">
+            <h3>TRUMP</h3>
+            <div id="trumpCardContainer"></div>
+            <h3 id="deckNr"></h3>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+#lobbyContainer {
+    margin: 0 auto;
+
+    background-color: $color-gray-1;
+
+    max-width: 700px;
+    min-height: 100vh;
+
+    padding: 1rem;
+
+    #lobbyList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        margin: 1rem 0;
+
+        lobby-listing {
+            display: flex;
+
+            &:nth-child(even) {
+                background-color: white;
+            }
+
+            span {
+                flex: 1;
+
+                display: flex;
+                align-items: center;
+
+                margin-left: 1rem;
+            }
+        }
+    }
+}

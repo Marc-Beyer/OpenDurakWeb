@@ -1,0 +1,82 @@
+card-element {
+    --card-size: 80px;
+    --card-size-hover: 180px;
+    $card-ratio: 1.7;
+
+    width: var(--card-size);
+    height: calc(var(--card-size) * $card-ratio);
+
+    position: absolute;
+
+    background-color: rgb(235, 235, 235);
+
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 1px -1px 2px 1px rgba(1, 1, 1, 0.4);
+
+    &:hover {
+        --card-size: var(--card-size-hover);
+
+        z-index: 1001 !important;
+
+        transform: translate(-25%, -50%);
+
+        cursor: pointer;
+    }
+
+    &.marked {
+        z-index: 1000 !important;
+        outline: 3px solid yellow;
+    }
+
+    &.diamond,
+    &.heart {
+        color: $color-red-2;
+    }
+
+    .value {
+        $topBottomDist: calc(var(--card-size) / 10);
+        $leftRightDist: calc(var(--card-size) / 8);
+
+        position: absolute;
+
+        font-size: calc(var(--card-size) / 5);
+        font-weight: 700;
+
+        &:nth-child(1) {
+            top: $topBottomDist;
+            left: $leftRightDist;
+        }
+
+        &:nth-child(2) {
+            top: $topBottomDist;
+            right: $leftRightDist;
+        }
+
+        &:nth-child(3) {
+            bottom: $topBottomDist;
+            left: $leftRightDist;
+
+            display: block;
+            transform: rotate(180deg);
+        }
+
+        &:nth-child(4) {
+            bottom: $topBottomDist;
+            right: $leftRightDist;
+
+            display: block;
+            transform: rotate(180deg);
+        }
+    }
+
+    .suit {
+        font-size: calc(var(--card-size) / 2);
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+    }
+}
