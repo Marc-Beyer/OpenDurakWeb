@@ -7,7 +7,9 @@
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-    background: $color-special-highlight;
+    //background: $color-special-highlight;
+    background: rgb(2, 0, 36);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(78, 150, 40, 1) 0%, rgba(58, 100, 36, 1) 100%);
 }
 
 h1 {
@@ -25,6 +27,8 @@ button {
 
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     font-size: medium;
+
+    z-index: 100;
 
     &:hover {
         background-color: $color-special-highlight;

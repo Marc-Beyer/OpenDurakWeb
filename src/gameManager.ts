@@ -74,12 +74,8 @@ export default class GameManager {
     }
 
     private async attack(card: Card) {
-        const headers = new Headers();
-        headers.append("userId", this.userId);
-
-        const response = await fetch(endpoint.attack(this.lobbyId), {
+        const response = await fetch(endpoint.attack(this.lobbyId, this.userId), {
             method: "post",
-            headers,
             body: JSON.stringify(card),
         });
 
@@ -91,14 +87,8 @@ export default class GameManager {
     }
 
     private async defend(defendRequest: DefendRequest) {
-        const headers = new Headers();
-        headers.append("userId", this.userId);
-
-        console.log("defReq", JSON.stringify(defendRequest));
-
-        const response = await fetch(endpoint.defend(this.lobbyId), {
+        const response = await fetch(endpoint.defend(this.lobbyId, this.userId), {
             method: "post",
-            headers,
             body: JSON.stringify(defendRequest),
         });
 
@@ -110,12 +100,8 @@ export default class GameManager {
     }
 
     private async help(card: Card) {
-        const headers = new Headers();
-        headers.append("userId", this.userId);
-
-        const response = await fetch(endpoint.help(this.lobbyId), {
+        const response = await fetch(endpoint.help(this.lobbyId, this.userId), {
             method: "post",
-            headers,
             body: JSON.stringify(card),
         });
 

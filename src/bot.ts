@@ -18,12 +18,8 @@ export default class Bot {
     }
 
     private async connect() {
-        const headers = new Headers();
-        headers.append("username", this.username);
-
-        const response = await fetch(endpoint.joinLobby(this.lobbyId), {
+        const response = await fetch(endpoint.joinLobby(this.lobbyId, this.username), {
             method: "post",
-            headers,
         });
 
         if (response.status !== 200) {
@@ -102,12 +98,8 @@ export default class Bot {
             if (gameState.battlefield.some((cp) => cp.second === null)) return;
             if (gameState.helperHash && this.role === Role.Attacker && !gameState.helperGaveUp) return;
 
-            const headers = new Headers();
-            headers.append("userId", this.userId);
-
-            const response = await fetch(endpoint.giveUp(this.lobbyId), {
+            const response = await fetch(endpoint.giveUp(this.lobbyId, this.userId), {
                 method: "post",
-                headers,
             });
 
             if (response.status !== 200) {
@@ -117,15 +109,14 @@ export default class Bot {
             }
         }
 
-        const headers = new Headers();
-        headers.append("userId", this.userId);
-
-        const endpointUrl = this.role === Role.Attacker ? endpoint.attack(this.lobbyId) : endpoint.help(this.lobbyId);
+        const endpointUrl =
+            this.role === Role.Attacker
+                ? endpoint.attack(this.lobbyId, this.userId)
+                : endpoint.help(this.lobbyId, this.userId);
         const body = JSON.stringify(card);
         if (body.length > 5) {
             const response = await fetch(endpointUrl, {
                 method: "post",
-                headers,
                 body,
             });
 
@@ -146,17 +137,13 @@ export default class Bot {
         const card = findBestCardsToDefend(gameState.selfPlayer.cards, gameState.trump.suit, attackingCard);
 
         if (card) {
-            const headers = new Headers();
-            headers.append("userId", this.userId);
-
             const defendRequest: DefendRequest = {
                 defendingCard: card,
                 attackingCard,
             };
 
-            const response = await fetch(endpoint.defend(this.lobbyId), {
+            const response = await fetch(endpoint.defend(this.lobbyId, this.userId), {
                 method: "post",
-                headers,
                 body: JSON.stringify(defendRequest),
             });
 
@@ -168,12 +155,8 @@ export default class Bot {
             return;
         }
 
-        const headers = new Headers();
-        headers.append("userId", this.userId);
-
-        const response = await fetch(endpoint.giveUp(this.lobbyId), {
+        const response = await fetch(endpoint.giveUp(this.lobbyId, this.userId), {
             method: "post",
-            headers,
         });
 
         if (response.status !== 200) {

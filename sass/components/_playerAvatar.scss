@@ -1,0 +1,56 @@
+player-avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    color: $color-white-1;
+
+    transform: translate(-50%, 0);
+
+    &.defender {
+        img {
+            width: 60px;
+            filter: invert(100%) brightness(70%) sepia(1010%) drop-shadow(1px 1px 4px rgb(0, 0, 0));
+        }
+    }
+
+    img {
+        width: 50px;
+        filter: invert(100%) brightness(100%);
+    }
+
+    .cardContainer {
+        display: flex;
+        align-content: center;
+
+        margin: 0.5rem;
+
+        max-width: 150px;
+
+        .dummyCard {
+            overflow: hidden;
+
+            div {
+                --card-size: 20px;
+                $card-ratio: 1.7;
+
+                width: var(--card-size);
+                height: calc(var(--card-size) * $card-ratio);
+
+                background-color: $color-red-1;
+                border: 3px solid $color-white-1;
+                outline: 1px solid black;
+                margin: 1px;
+
+                border-radius: 10px;
+                border-radius: calc(var(--card-size) / 10);
+            }
+
+            &:last-child {
+                overflow: visible;
+            }
+        }
+    }
+}

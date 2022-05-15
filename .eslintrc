@@ -16,7 +16,7 @@
         "no-console": "off",
         "no-alert": "error",
         "linebreak-style": "off",
-        "operator-linebreak": ["error", "after"],
+        "operator-linebreak": "off",
         "no-plusplus": "off",
         "max-len": ["error", { "code": 120 }],
         "@typescript-eslint/quotes": ["error", "double"],

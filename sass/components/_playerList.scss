@@ -14,16 +14,16 @@
             font-weight: 400;
 
             &.attacker {
-                font-weight: 700;
+                font-weight: 500;
             }
 
             &.defender {
-                font-weight: 800;
-                color: $color-red-2;
+                font-weight: 600;
+                //color: $color-red-2;
             }
 
             &.helper {
-                font-weight: 700;
+                font-weight: 500;
             }
 
             &.gaveUp {

@@ -1,36 +1,36 @@
-const tls = false;
+const tls = true;
 
 const mode = tls ? "s" : "";
-const baseUrl = `http${mode}://localhost:8080`;
-const baseUrlSocket = `ws${mode}://localhost:8080`;
+const baseUrl = `http${mode}://opendurak.pascaldornfeld.de:443`;
+const baseUrlSocket = `ws${mode}://opendurak.pascaldornfeld.de:443`;
 
 export const alive = `${baseUrl}/alive`;
 export const lobby = `${baseUrl}/lobby`;
 
-export function joinLobby(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/join`;
+export function joinLobby(lobbyId: string, username: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/join?username=${username}`;
 }
 
-export function startGame(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/game/start`;
+export function startGame(lobbyId: string, userId: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/game/start?userId=${userId}`;
 }
 
 /** Moves Endpoints */
 
-export function attack(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/game/attack`;
+export function attack(lobbyId: string, userId: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/game/attack?userId=${userId}`;
 }
 
-export function help(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/game/help`;
+export function help(lobbyId: string, userId: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/game/help?userId=${userId}`;
 }
 
-export function defend(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/game/defend`;
+export function defend(lobbyId: string, userId: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/game/defend?userId=${userId}`;
 }
 
-export function giveUp(lobbyId: string): string {
-    return `${baseUrl}/lobby/${lobbyId}/game/giveUp`;
+export function giveUp(lobbyId: string, userId: string): string {
+    return `${baseUrl}/lobby/${lobbyId}/game/giveUp?userId=${userId}`;
 }
 
 /** WebSocket Endpoints */

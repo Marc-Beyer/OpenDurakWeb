@@ -47,12 +47,8 @@ joinButton?.addEventListener("click", async () => {
         usernameInfo.textContent = "loading...";
         console.log(`join '${lobbyId}' as '${username}'`);
 
-        const headers = new Headers();
-        headers.append("username", username);
-
-        const response = await fetch(endpoint.joinLobby(lobbyId), {
+        const response = await fetch(endpoint.joinLobby(lobbyId, username), {
             method: "post",
-            headers,
         });
 
         if (response.status !== 200) {
@@ -145,20 +141,26 @@ function fillPlayerListElement(players: string[] | Player[], gameState: GameStat
 function addPlayerAvatars(players: Player[], gameState: GameState) {
     avatarContainer.innerHTML = "";
 
+    const playerIndex = players.findIndex((player) => player.hash === gameState.selfPlayer?.hash);
+    if (playerIndex > 0) {
+        players.push(...players.splice(0, playerIndex));
+    }
+
+    const slice = (Math.PI * 2) / players.length;
+    let angle = Math.PI / 2;
+
     for (const player of players) {
-        avatarContainer.appendChild(new PlayerAvatar(player, gameState));
+        const playerAvatar = new PlayerAvatar(player, gameState, angle);
+        avatarContainer.appendChild(playerAvatar);
+        angle += slice;
     }
 }
 
 startGameButton.addEventListener("click", async () => {
     if (playerList.length < 2 || !userId) return;
 
-    const headers = new Headers();
-    headers.append("userId", userId);
-
-    const response = await fetch(endpoint.startGame(lobbyId), {
+    const response = await fetch(endpoint.startGame(lobbyId, userId), {
         method: "post",
-        headers,
     });
 
     if (response.status !== 200) {
@@ -178,12 +180,8 @@ endTurnButton.addEventListener("click", async () => {
         gameManager.cardManager.takeAllCards = true;
     }
 
-    const headers = new Headers();
-    headers.append("userId", userId);
-
-    const response = await fetch(endpoint.giveUp(lobbyId), {
+    const response = await fetch(endpoint.giveUp(lobbyId, userId), {
         method: "post",
-        headers,
     });
 
     if (response.status !== 200) {
